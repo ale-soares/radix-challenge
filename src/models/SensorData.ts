@@ -1,14 +1,14 @@
 import { Document, model, Schema } from "mongoose";
 
-export type TSensor = {
+export type TSensorData = {
   equipmentId?: string;
   timestamp?: string;
   value?: number;
 };
 
-export interface ISensor extends TSensor, Document {}
+export interface ISensorData extends TSensorData, Document {}
 
-const SensorSchema = new Schema({
+const SensorDataSchema = new Schema({
   equipmentId: {
     type: String,
   },
@@ -20,6 +20,6 @@ const SensorSchema = new Schema({
   },
 });
 
-const Sensor = model<ISensor>("Sensor", SensorSchema);
+const SensorData = model<ISensorData>("SensorData", SensorDataSchema);
 
-export default Sensor;
+export default SensorData;

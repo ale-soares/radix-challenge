@@ -1,6 +1,6 @@
 import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
-import routes from "./src/routes/sensor";
+import routes from "./src/routes/sensorData";
 import mongoose from "mongoose";
 
 const app: Express = express();
