@@ -1,7 +1,9 @@
 import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
-import routes from "./src/routes/sensorData";
 import mongoose from "mongoose";
+
+import sensorDataRoutes from "./src/routes/sensorData";
+import uploadRoutes from "./src/routes/upload";
 
 const app: Express = express();
 const port = process.env.PORT || 3000;
@@ -17,7 +19,9 @@ mongoose
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use("/", routes);
+
+app.use("/", sensorDataRoutes);
+app.use("/upload", uploadRoutes);
 
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);

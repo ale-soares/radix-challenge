@@ -1,12 +1,12 @@
 import express from "express";
 import controller from "../controllers/sensorData";
 
-const router = express.Router();
+const sensorDataRoutes = express.Router();
 
-router.get("/", controller.getAllSensorData);
-router.get("/:equipmentId", controller.getSensorData);
-router.post("/", controller.addSensorData);
-router.delete("/:dataId", controller.deleteSensorData);
-router.patch("/:dataId", controller.updateSensorData);
+sensorDataRoutes.get("/", controller.getAllSensorData);
+sensorDataRoutes.get("/:equipmentId", controller.getSensorData);
+sensorDataRoutes.post("/", controller.addSensorData);
+sensorDataRoutes.delete("/:dataId", controller.deleteSensorData);
+sensorDataRoutes.patch("/:dataId", controller.updateSensorData);
 
-export default router;
+export default sensorDataRoutes;
