@@ -3,8 +3,10 @@ import controller from "../controllers/sensorData";
 
 const router = express.Router();
 
-router.get("/", controller.getSensorsData);
+router.get("/", controller.getAllSensorData);
+router.get("/:equipmentId", controller.getSensorData);
 router.post("/", controller.addSensorData);
-router.delete("/:id", controller.deleteSensorData);
+router.delete("/:dataId", controller.deleteSensorData);
+router.patch("/:dataId", controller.updateSensorData);
 
 export default router;
