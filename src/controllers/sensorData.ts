@@ -42,7 +42,9 @@ const addSensorData = async (req: Request, res: Response) => {
 
     res
       .status(201)
-      .send(`Sensor data for equipment: "${data.equipmentId}" added.`);
+      .send(
+        `Sensor data for equipment: "${data.equipmentId}" added successfully.`
+      );
   } catch (error) {
     res.status(500).send(error);
   }
@@ -60,7 +62,7 @@ const deleteSensorData = async (req: Request, res: Response) => {
         .send(`Sensor data for data id: "${dataId}" not found.`);
     }
 
-    res.send(`Sensor data for data id: "${dataId}" deleted.`);
+    res.send(`Sensor data for data id: "${dataId}" deleted successfully.`);
   } catch (error) {
     res.status(500).send(error);
   }
@@ -83,7 +85,7 @@ const updateSensorData = async (req: Request, res: Response) => {
         .send(`Sensor data for data id: "${dataId}" not found.`);
     }
 
-    res.send(`Sensor data for data id: "${dataId}" updated.`);
+    res.send(`Sensor data for data id: "${dataId}" updated successfully.`);
   } catch (error) {
     res.status(500).send(error);
   }
