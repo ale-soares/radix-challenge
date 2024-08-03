@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import Sensor, { ISensorData, TSensorData } from "../models/SensorData";
 
-const getSensorsData = async (res: Response) => {
+const getSensorsData = async (req: Request, res: Response) => {
   try {
     const sensors: ISensorData[] = await Sensor.find({});
 
