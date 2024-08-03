@@ -30,6 +30,8 @@ Overview
 - [Typescript With MongoDB and Node/Express](https://medium.com/@haybams/typescript-with-mongoose-and-node-express-24073d51d2ee)
 - [Mongoose Node.js Express TypeScript application boilerplate with best practices for API development GitHub Repo](https://github.com/sunnysidelabs/mongoose-express-ts/blob/master/src/models/User.ts)
 - [Deploying Express Backend to Vercel](https://medium.com/@ShrianshAgarwal/deploying-express-backend-to-vercel-7664ef880005)
+- [Stack Overflow: How do I delete a document in mongoDB using mongoose in Node.js](https://stackoverflow.com/questions/76980190/how-do-i-delete-a-document-in-mongodb-using-mongoose-in-node-js)
+- [Mongoose Models Documentation](https://mongoosejs.com/docs/models.html)
 
 <hr>
 <p>Made with ❤️ by me</p>
