@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { createReadStream } from "fs";
 import { parse } from "fast-csv";
-import { TSensorData } from "../models/SensorData";
+import SensorData, { TSensorData } from "../models/SensorData";
 
 const uploadFile = async (req: Request, res: Response) => {
   try {
@@ -10,36 +10,38 @@ const uploadFile = async (req: Request, res: Response) => {
     }
 
     let uploadedData: TSensorData[] = [];
-    let path = "./resources/static/assets/uploads/" + req.file.filename;
+    let filePath = "./resources/static/assets/uploads/" + req.file.filename;
 
-    createReadStream(path)
+    createReadStream(filePath)
       .pipe(parse({ headers: true }))
       .on("error", (error) => {
-        throw error.message;
+        throw new Error(error.message);
       })
       .on("data", (row) => {
-        uploadedData.push(row);
+        const { equipmentId, timestamp, value } = row;
+        uploadedData.push({
+          equipmentId,
+          timestamp, // Make sure to parse timestamp as Date
+          value: parseFloat(value), // Ensure value is a number
+        });
       })
-      .on("end", () => {
-        // SensorData.bulkCreate(uploadedData)
-        //   .then(() => {
-        //     res.status(200).send({
-        //       message:
-        //         "The file: " +
-        //         req?.file?.originalname +
-        //         " got uploaded successfully!!",
-        //     });
-        //   })
-        //   .catch((error: any) => {
-        //     res.status(500).send({
-        //       message: "Couldn't import data into database!",
-        //       error: error.message,
-        //     });
-        //   });
-        console.log("end");
+      .on("end", async () => {
+        try {
+          // Insert data into the database
+          await SensorData.insertMany(uploadedData);
+          res.status(200).send({
+            message:
+              "Uploaded the file successfully: " + req?.file?.originalname,
+          });
+        } catch (error) {
+          console.error("Error inserting data into the database:", error);
+          res.status(500).send({
+            message: "Failed to insert data into the database.",
+          });
+        }
       });
   } catch (error) {
-    console.log(error);
+    console.error("Error uploading file:", error);
     res.status(500).send({
       message: "Failed to upload the file: " + req?.file?.originalname,
     });
