@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
-import Sensor, { ISensorData, TSensorData } from "../models/SensorData";
+import SensorData, { ISensorData, TSensorData } from "../models/SensorData";
 
 const getSensorsData = async (req: Request, res: Response) => {
   try {
-    const sensors: ISensorData[] = await Sensor.find({});
+    const allData: ISensorData[] = await SensorData.find({});
 
-    res.send(sensors);
+    res.send(allData);
   } catch (error) {
     console.error(error);
     res.status(500).send(error);
@@ -17,30 +17,32 @@ const addSensorData = async (req: Request, res: Response) => {
 
   try {
     const newSensor: TSensorData = { equipmentId, timestamp, value };
-    const sensor = new Sensor(newSensor);
-    await sensor.save();
+    const data = new SensorData(newSensor);
+    await data.save();
 
-    res.status(201).send(`Sensor data for ${sensor.equipmentId} added.`);
+    res
+      .status(201)
+      .send(`Sensor data for equipment: "${data.equipmentId}" added.`);
   } catch (error) {
     res.status(500).send(error);
   }
 };
 
-// const deleteSensorData = async (req: Request, res: Response) => {
-//   const deleteTitle = req.params;
+const deleteSensorData = async (req: Request, res: Response) => {
+  const { id } = req.params;
 
-//   try {
-//     const word = await Word.findOneAndDelete<IWord>({ title: deleteTitle });
+  try {
+    const data = await SensorData.findByIdAndDelete(id);
 
-//     if (!word) {
-//       return res.status(404).send(response[404]);
-//     }
+    if (!data) {
+      return res.status(404).send(`Sensor data for ${id} not found.`);
+    }
 
-//     res.send(word);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).send(error);
-//   }
-// };
+    res.send(`Sensor data for id: "${id}" deleted.`);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send(error);
+  }
+};
 
-export default { getSensorsData, addSensorData };
+export default { getSensorsData, addSensorData, deleteSensorData };
