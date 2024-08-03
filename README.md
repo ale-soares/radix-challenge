@@ -32,6 +32,10 @@ Overview
 - [Deploying Express Backend to Vercel](https://medium.com/@ShrianshAgarwal/deploying-express-backend-to-vercel-7664ef880005)
 - [Stack Overflow: How do I delete a document in mongoDB using mongoose in Node.js](https://stackoverflow.com/questions/76980190/how-do-i-delete-a-document-in-mongodb-using-mongoose-in-node-js)
 - [Mongoose Models Documentation](https://mongoosejs.com/docs/models.html)
+- [How to Create an Express POST Upload Endpoint](https://medium.com/@tatianaensslin/creating-an-express-post-upload-endpoint-13225e075d2f)
+- [Building a CSV Importer with Node.js](https://reflectoring.io/node-csv-importer/)
+- [How To Read and Write CSV Files in Node.js Using Node-CSV](https://www.digitalocean.com/community/tutorials/how-to-read-and-write-csv-files-in-node-js-using-node-csv)
+- [Fix "Unexpected field" Error From Multer](https://maximorlov.com/fix-unexpected-field-error-multer/)
 
 <hr>
 <p>Made with ❤️ by me</p>
