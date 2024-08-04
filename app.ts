@@ -30,7 +30,6 @@ const corsConfig = {
 };
 
 app.use(cors(corsConfig));
-
 app.use("/", router);
 
 app.listen(port, () => {
