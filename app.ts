@@ -11,6 +11,8 @@ const app: Express = express();
 
 const port = process.env.PORT || 3000;
 
+console.log(process.env.MONGO_USR);
+
 mongoose
   .connect(
     `mongodb+srv://${process.env.MONGO_USR}:${process.env.MONGO_PSW}@cluster0.1q6uhd1.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
@@ -21,22 +23,6 @@ mongoose
   .catch((error) => {
     console.log(`can not connect to database, ${error}`);
   });
-
-// const connectDB = async () => {
-//   try {
-//     await mongoose.connect(connectionString);
-//     console.log(`MongoDB connected`);
-//   } catch (error) {
-//     console.error(`Error: ${error} `);
-//   }
-// };
-
-// mongoose
-//   .connect(process.env.DB_STR as string)
-//   .then(() => console.log("MongoDB connected"))
-//   .catch((err: unknown) => console.log(err));
-
-// connectDB();
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
