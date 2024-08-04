@@ -11,9 +11,7 @@ const app: Express = express();
 const port = process.env.PORT || 3000;
 
 mongoose
-  .connect(
-    `mongodb+srv://${process.env.DB_USR}:${process.env.DB_PSW}@cluster0.1q6uhd1.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
-  )
+  .connect("DB_STR")
   .then(() => console.log("MongoDB connected"))
   .catch((err: unknown) => console.log(err));
 
