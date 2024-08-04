@@ -11,7 +11,7 @@ const app: Express = express();
 const port = process.env.PORT || 3000;
 
 mongoose
-  .connect("process.env.DB_STR")
+  .connect(process.env.DB_STR as string)
   .then(() => console.log("MongoDB connected"))
   .catch((err: unknown) => console.log(err));
 
