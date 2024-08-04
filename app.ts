@@ -15,7 +15,7 @@ console.log(process.env.MONGO_USR);
 
 mongoose
   .connect(
-    `mongodb+srv://${process.env.MONGO_USR}:${process.env.MONGO_PSW}@cluster0.1q6uhd1.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
+    `mongodb+srv://alesoares:${process.env.MONGO_PSW}@cluster0.1q6uhd1.mongodb.net/?retryWrites=true&w=majority`
   )
   .then(() => {
     console.log("Successfully connected ");
