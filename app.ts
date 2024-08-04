@@ -1,21 +1,16 @@
 import express, { Express } from "express";
+
+import mongoose from "mongoose";
 import dotenv from "dotenv";
-import mongoose, { ConnectOptions } from "mongoose";
+dotenv.config();
+
 import cors from "cors";
 import router from "./src/routes/routes";
 
-dotenv.config();
-
 const app: Express = express();
-const port = process.env.PORT || 3000;
-const connectionString = process.env.DB_STR as string;
 
 mongoose
-  .connect(connectionString, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-  } as ConnectOptions)
+  .connect(`${process.env.MONGO_URI}`)
   .then(() => {
     console.log("Successfully connected ");
   })
