@@ -12,7 +12,9 @@ const app: Express = express();
 const port = process.env.PORT || 3000;
 
 mongoose
-  .connect(`${process.env.MONGO_URI}`)
+  .connect(
+    `mongodb+srv://${process.env.MONGO_USR}:${process.env.MONGO_PSW}@cluster0.1q6uhd1.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
+  )
   .then(() => {
     console.log("Successfully connected ");
   })
@@ -53,9 +55,9 @@ const corsConfig = {
 app.use(cors(corsConfig));
 app.use("/", router);
 
-router.get("/", (req: Request, res: Response) => {
-  res.send("API");
-});
+// router.get("/", (req: Request, res: Response) => {
+//   res.send("API");
+// });
 
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);
