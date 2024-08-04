@@ -1,6 +1,7 @@
-import express, { Express, Request, Response } from "express";
+import express, { Express } from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
+import cors from "cors";
 
 import router from "./src/routes/routes";
 
@@ -18,6 +19,15 @@ mongoose
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+const corsConfig = {
+  origin: "http://localhost:3000",
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true,
+};
+
+app.use(cors(corsConfig));
 
 app.use("/", router);
 
