@@ -1,19 +1,43 @@
 import express, { Express } from "express";
-// import "dotenv/config";
-import mongoose from "mongoose";
+import dotenv from "dotenv";
+import mongoose, { ConnectOptions } from "mongoose";
 import cors from "cors";
-
 import router from "./src/routes/routes";
 
-require("dotenv").config();
+dotenv.config();
 
 const app: Express = express();
 const port = process.env.PORT || 3000;
+const connectionString = process.env.DB_STR as string;
 
 mongoose
-  .connect(process.env.DB_STR as string)
-  .then(() => console.log("MongoDB connected"))
-  .catch((err: unknown) => console.log(err));
+  .connect(connectionString, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+  } as ConnectOptions)
+  .then(() => {
+    console.log("Successfully connected ");
+  })
+  .catch((error) => {
+    console.log(`can not connect to database, ${error}`);
+  });
+
+// const connectDB = async () => {
+//   try {
+//     await mongoose.connect(connectionString);
+//     console.log(`MongoDB connected`);
+//   } catch (error) {
+//     console.error(`Error: ${error} `);
+//   }
+// };
+
+// mongoose
+//   .connect(process.env.DB_STR as string)
+//   .then(() => console.log("MongoDB connected"))
+//   .catch((err: unknown) => console.log(err));
+
+// connectDB();
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
