@@ -2,7 +2,7 @@ import { Document, model, Schema } from "mongoose";
 
 export type TSensorData = {
   equipmentId?: string;
-  timestamp?: string;
+  timestamp?: Date;
   value?: number;
 };
 
@@ -13,7 +13,7 @@ const SensorDataSchema = new Schema({
     type: String,
   },
   timestamp: {
-    type: String,
+    type: Date,
   },
   value: {
     type: Number,

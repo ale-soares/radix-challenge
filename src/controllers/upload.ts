@@ -21,13 +21,12 @@ const uploadFile = async (req: Request, res: Response) => {
         const { equipmentId, timestamp, value } = row;
         uploadedData.push({
           equipmentId,
-          timestamp, // Make sure to parse timestamp as Date
-          value: parseFloat(value), // Ensure value is a number
+          timestamp: new Date(timestamp),
+          value: parseFloat(value),
         });
       })
       .on("end", async () => {
         try {
-          // Insert data into the database
           await SensorData.insertMany(uploadedData);
           res
             .status(200)
