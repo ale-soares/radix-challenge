@@ -15,7 +15,7 @@ router.use("/", routes);
 
 mongoose
   .connect(
-    `mongodb+srv://${process.env.DB_USR}:${process.env.DB_PSW}@cluster0.1q6uhd1.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
+    `mongodb+srv://alesoares:HSFoJXsBwnmMm@cluster0.1q6uhd1.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
   )
   .catch((err) => console.log(err));
 
