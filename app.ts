@@ -1,4 +1,4 @@
-import express, { Express } from "express";
+import express, { Express, Request, Response } from "express";
 
 import mongoose from "mongoose";
 import dotenv from "dotenv";
@@ -8,6 +8,8 @@ import cors from "cors";
 import router from "./src/routes/routes";
 
 const app: Express = express();
+
+const port = process.env.PORT || 3000;
 
 mongoose
   .connect(`${process.env.MONGO_URI}`)
@@ -50,6 +52,10 @@ const corsConfig = {
 
 app.use(cors(corsConfig));
 app.use("/", router);
+
+router.get("/", (req: Request, res: Response) => {
+  res.send("API");
+});
 
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);
