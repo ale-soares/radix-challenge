@@ -21,7 +21,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 const corsConfig = {
-  origin: "http://localhost:3000",
+  origin: [
+    "http://localhost:3000",
+    "http://localhost:5173",
+    "http://radix-test-front.vercel.app",
+  ],
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
