@@ -9,6 +9,15 @@ const port = process.env.PORT || 3000;
 
 dotenv.config();
 
+const corsConfig = {
+  origin: "*",
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true,
+};
+
+router.use(cors(corsConfig));
+
 router.use(express.urlencoded({ extended: false }));
 router.use(express.json());
 router.use("/", routes);
@@ -22,15 +31,6 @@ mongoose
 router.get("/", (req: Request, res: Response) => {
   res.send("API");
 });
-
-const corsConfig = {
-  origin: "*",
-  methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-  credentials: true,
-};
-
-router.use(cors(corsConfig));
 
 router.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);
